@@ -25,9 +25,9 @@ button.addEventListener('click', () =>{
         var descValue = data['weather'][0]['description'];
       
         main.innerHTML = nameValue;
-        desc.innerHTML = "Desc - "+descValue;
-        temp.innerHTML = "Temp - "+tempValue;
-        clouds.innerHTML = "";
+        desc.innerHTML = descValue;
+        temp.innerHTML = tempValue+"°";
+        clouds.src = "http://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@4x.png";
         input.value ="";
 
       });
