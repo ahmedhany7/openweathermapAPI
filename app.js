@@ -10,26 +10,27 @@ button.addEventListener('click', () =>{
   fetch('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=c84500c5a2d1d94bf1c27c05ae5737f7&lang=ar')
   .then(
     function(response) {
-      if (response.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' +
-          response.status);
+      if (response.status === 404) {
+        main.innerHTML = 'City not found';
+        temp.innerHTML = "";
+        clouds.src = "";
+        desc.innerHTML = "";
         return;
       }
-
+      else if (response.status !== 200) {
+        console.log(`Looks like there was a problem. Status Code: ${response.status}`);
+        return;
+      }
       // Examine the text in the response
       response.json().then(function(data) {
-        console.log(data);
-
-        var tempValue = data['main']['temp'];
-        var nameValue = data['name'];
-        var descValue = data['weather'][0]['description'];
+        //console.log(data);
       
-        main.innerHTML = nameValue;
-        desc.innerHTML = descValue;
-        temp.innerHTML = tempValue+"°";
+        main.innerHTML = data['name'];
+        temp.innerHTML = data['main']['temp']+"°";
         clouds.src = "http://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@2x.png";
-        input.value ="";
+        desc.innerHTML = data['weather'][0]['description'];
 
+        input.value ="";
       });
     }
   )

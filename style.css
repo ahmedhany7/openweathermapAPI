@@ -9,6 +9,10 @@ body{
   background: #f8f8f8;
 }
 
+.header{
+  text-align: center;
+}
+
 .input{
   text-align: center;
   margin: 100px auto;
@@ -59,7 +63,7 @@ input[type="submit"]{
 
 .card p{
   text-align: center;
-  margin:5px 0;
+  margin:15px 0;
   font-size:20px;
 }
 
