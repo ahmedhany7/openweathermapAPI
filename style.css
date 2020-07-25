@@ -59,11 +59,12 @@ input[type="submit"]{
 
 .card p{
   text-align: center;
-  margin:40px 0;
+  margin:5px 0;
   font-size:20px;
 }
 
 .clouds{
+  text-align: center;
   width: 100px;
   height: 100px;
 }
