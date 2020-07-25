@@ -27,7 +27,7 @@ button.addEventListener('click', () =>{
         main.innerHTML = nameValue;
         desc.innerHTML = descValue;
         temp.innerHTML = tempValue+"°";
-        clouds.src = "http://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@4x.png";
+        clouds.src = "http://openweathermap.org/img/wn/"+data['weather'][0]['icon']+"@2x.png";
         input.value ="";
 
       });
