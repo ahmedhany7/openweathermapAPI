@@ -6,23 +6,35 @@ var clouds = document.querySelector('.clouds');
 var button= document.querySelector('.submit');
 
 
-button.addEventListener('click', function(name){
-console.log (('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&appid=3529e91af40f1dcab81a6c324a018a01'));
+button.addEventListener('click', () =>{
+  fetch('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=c84500c5a2d1d94bf1c27c05ae5737f7')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
 
-fetch('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=3529e91af40f1dcab81a6c324a018a01')
-.then(response => response.json())
-.then(data => {
-  var tempValue = data['main']['temp'];
-  var nameValue = data['name'];
-  //var tempc = (tempValue - 273.15) ;
-  var descValue = data['weather'][0]['description'];
+      // Examine the text in the response
+      response.json().then(function(data) {
+        console.log(data);
 
-  main.innerHTML = nameValue;
-  desc.innerHTML = "Desc - "+descValue;
-  temp.innerHTML = "Temp - "+tempValue;
-  input.value ="";
+        var tempValue = data['main']['temp'];
+        var nameValue = data['name'];
+        var descValue = data['weather'][0]['description'];
+      
+        main.innerHTML = nameValue;
+        desc.innerHTML = "Desc - "+descValue;
+        temp.innerHTML = "Temp - "+tempValue;
+        clouds.innerHTML = "";
+        input.value ="";
 
-})
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
 
-.catch(err => alert("Wrong city name!"));
-})
+});
