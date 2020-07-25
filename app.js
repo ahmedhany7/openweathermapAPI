@@ -7,7 +7,7 @@ var button= document.querySelector('.submit');
 
 
 button.addEventListener('click', () =>{
-  fetch('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=c84500c5a2d1d94bf1c27c05ae5737f7')
+  fetch('https://api.openweathermap.org/data/2.5/weather?q='+input.value+'&units=metric&appid=c84500c5a2d1d94bf1c27c05ae5737f7&lang=ar')
   .then(
     function(response) {
       if (response.status !== 200) {
